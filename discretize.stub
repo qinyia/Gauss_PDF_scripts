@@ -1,0 +1,8 @@
+C NCLFORTSTART
+	subroutine discretize(omega,xnewvar,nbins,total_num,binBound,yy_data)
+	integer nbins,total_num
+	dimension omega(total_num)
+	dimension xnewvar(total_num)
+	dimension binBound(101)
+	dimension yy_data(nbins,total_num)
+C NCLEND

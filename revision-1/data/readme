@@ -1,0 +1,16 @@
+
+# default simulation: 1deg 
+new-cldfrac16-1d-MG15-revise-2-COSP: /home/lyl/WORK1/lyl_cesm1_2_1/archive/new-cldfrac16-1d-MG15-revise-2-COSP
+FC5_f09f09_MG15_COSP: /home/lyl/WORK1/lyl_cesm1_2_1/archive/FC5_f09f09_MG15_COSP
+
+# resolution dependent: 2deg
+FC5_f19f19_MG15_mac3_cosp: /home/lyl/WORK4/cesm1_2_1/archive/FC5_f19f19_MG15_mac3_cosp
+FC5_f19f19_MG15_cosp: /home/lyl/WORK4/cesm1_2_1/archive/FC5_f19f19_MG15_cosp
+
+# priliminary coupled results: 2deg
+# it seems the raw data storaged in archive is deleted. 
+# so move the coupled raw data in ./coupled/ to /work3/qinyi/data/newcldfrac/revision-1/
+B1850C5_f19g16_mac2
+his_200
+
+mid-data in output are moved to /home/lyl/WORK3/qinyi/mid-data/newcldfrac/revision-1/

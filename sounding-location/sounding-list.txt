@@ -1,0 +1,56 @@
+(0)	0  Ascension Island South Atlantic  -7.58  345.76
+(1)	1  Diego Garcia Indian Ocean        -7.18  72.24
+(2)	2  Truk Island Pacific Ocean        7.5  151
+(3)	3  Western Europe                   50  5
+(4)	4  Ethiopia Africa                  9  41
+(5)	5  Resolute NW Territories Canada   74.7  265
+(6)	6  Western Desert Australia         -25  130
+(7)	7  Northern Great Plains USA        45  260
+(8)	8  Central India                    20  80
+(9)	9  Marshall Islands Pacific Ocean   10  165
+(10)	10  Easter Island Pacific Ocean      -27  250
+(11)	11  Ross Ice Shelf Antarctica        -70  170
+(12)	12  South Pole Antarctica            -89  0
+(13)	13  Panama Central America           9  281
+(14)	14  Western North Atlantic           35  313
+(15)	15  Singapore Indonesia              1.3  103.8
+(16)	16  Manila Phillipines               15.2  120.5
+(17)	17  Gilbert Islands Pacific Ocean    1.3  173
+(18)	18  Hawaii Pacific Ocean             19.7  205
+(19)	19  Sao Paulo Brazil                 -23.5  313.5
+(20)	20  Heard Island Indian Ocean        -53  73.5
+(21)	21  Kagoshima Japan                  30  135
+(22)	22  Port Moresby Papau New Guinea    -9.5  147.25
+(23)	23  San Juan Puerto Rico             18.3  294
+(24)	24  Western Alaska USA               66.87  197.37
+(25)	25  Thule Greenland                  77  293
+(26)	26  San Francisco California USA     37  238
+(27)	27  Denver Colorado USA              40  255
+(28)	28  London England                   53  0
+(29)	29  Crete Mediterranean              35  25
+(30)	30  Tokyo Japan                      35  140
+(31)	31  Sydney Australia                 -35  150
+(32)	32  Christchurch New Zealand         -43.5  172.5
+(33)	33  Lima Peru                        -12  284
+(34)	34  Miami Florida USA                25  280
+(35)	35  Samoa Island Pacific Ocean       -14  190
+(36)	36  Ocean Ship P Gulf of Alaska      50  215
+(37)	37  Ocean Ship C North Atlantic      52.8  324.5
+(38)	38  Azores North Atlantic            38.7  332.9
+(39)	39  Ft Totten New York USA           40.7  286.3
+(40)	40  Darwin Airport Australia         -12.5  130.8
+(41)	41  Christmas Island Pacific Ocean   2  203
+(42)	42  Cocos Island Indian Ocean        -12.2  96.8
+(43)	43  Midway Island Pacific Ocean      28.3  182.6
+(44)	44  Raoui Island Pacific Ocean       -29.3  182
+(45)	45  Whitehorse Yukon Canada          60.8  224.9
+(46)	46  Oklahoma City USA                35.4  262.4
+(47)	47  Gibraltor Mediterranean          36.2  354.7
+(48)	48  Mexico City Mexico               19.1  260.9
+(49)	49  Recife Brazil                    -6  327
+(50)	50  Nairobi Kenya                    -1.3  36.5
+(51)	51  New Delhi India                  28.6  77.3
+(52)	52  Madras India                     13  80.2
+(53)	53  Da Nang Vietnam                  16  108.3
+(54)	54  Yap Island Pacific Ocean         9.4  138.1
+(55)	55  Falkland Islands South Atlantic  -51.7  302

@@ -1,0 +1,11 @@
+C NCLFORTSTART
+	subroutine discretize2(xLTS,xRH,xnewvar,nbins1,nbins2,total_num,binBound1,binBound2,yy_data)
+	implicit none
+	integer nbins1,nbins2,total_num
+	dimension xLTS(total_num)
+	dimension xRH(total_num)
+	dimension xnewvar(total_num)
+	dimension binBound1(101)
+	dimension binBound2(101)
+	dimension yy_data(nbins2,nbins1,total_num)
+C NCLEND
