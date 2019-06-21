@@ -45,7 +45,9 @@ print(conden2(index(0,0),index(0,1)+10))
 print(cld(index(0,0),index(0,1)+10))
 
 ;************************create plot***************
-wks = gsn_open_wks("eps","../figure/fig1-deltaq-sgm-cld-conden-eps")
+;wks = gsn_open_wks("eps","../figure/fig1-deltaq-sgm-cld-conden-eps")
+wks = gsn_open_wks("pdf","../figure/fig1-deltaq-sgm-cld-conden")
+
 
 
 res = True
@@ -119,7 +121,13 @@ res2@tiXAxisString = "deltaq(g/kg)"
 res2@xyLineDashSegLenF = 0.5
 
 ;plot1 = gsn_csm_xy2(wks,x1,y11,y12,res1,res2)
+
+res1@gsnStringFontHeightF	= 0.02
+res1@gsnLeftString		= "(a)"
 plot1 = gsn_csm_xy(wks,deltaq,cld,res1)
+
+res2@gsnStringFontHeightF	= 0.02
+res2@gsnLeftString		= "(b)"
 plot2 = gsn_csm_xy(wks,deltaq,conden0,res2)
 
 gsn_panel(wks,(/plot1,plot2/),(/2,1/),False)
