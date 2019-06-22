@@ -75,7 +75,9 @@ cld_new_nig_avg&lat@units = "degrees_north"
 
 ;*******************plot*************************
 ;create plot
-wks = gsn_open_wks("eps","../figure/fig2-lat-lon-cloud-modis-day-night-eps")
+;wks = gsn_open_wks("eps","../figure/fig2-lat-lon-cloud-modis-day-night-eps")
+wks = gsn_open_wks("pdf","../figure/fig2-lat-lon-cloud-modis-day-night")
+
 plot = new(6,graphic)
 
 ;gsn_define_colormap(wks,"MPL_rainbow")
@@ -127,7 +129,13 @@ res2@gsnLeftString = ""
 res2@gsnRightString = ""
 res2@cnLineColor = "black"
 
-res@gsnLeftStringFontHeightF = 0.02
+
+ft								= 0.015
+res@gsnLeftStringFontHeightF	= ft
+res@tmXTOn						= False
+res@tmYROn						= False
+res@tmXBLabelFontHeightF		= ft
+res@tmYLLabelFontHeightF		= ft 
 
 res@gsnLeftString = "(a) MODIS_day"
 plot(0) = gsn_csm_contour_map_ce(wks,cld_obs_day_avg,res)
