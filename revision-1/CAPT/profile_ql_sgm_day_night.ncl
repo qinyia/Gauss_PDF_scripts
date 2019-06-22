@@ -161,7 +161,9 @@ N1_all_day(3:5,:) = N1_2_avg
 
 
 ;***********************create plot***************
-wks = gsn_open_wks("eps","../figure/fig3-profile_ql_sgm_day_night_75W_2_95W-eps")
+;wks = gsn_open_wks("eps","../figure/fig3-profile_ql_sgm_day_night_75W_2_95W-eps")
+wks = gsn_open_wks("pdf","../figure/fig3-profile_ql_sgm_day_night_75W_2_95W")
+
 plot = new(4,graphic)
 
 ;colors = (/"black","blue","magenta","brown","burlywood","darkgreen","darkorange","purple"/)
@@ -194,7 +196,20 @@ res@trXMinF = 0
 res@trXMaxF = 0.25
 res@gsnLeftString = "(a)"
 
-res@gsnLeftStringFontHeightF = 0.03
+;res@gsnLeftStringFontHeightF = 0.03
+
+ft								= 0.025
+res@gsnStringFontHeightF		= ft+0.005
+res@tmXTOn						= False
+res@tmYROn						= False
+res@tmXBLabelFontHeightF		= ft
+res@tmYLLabelFontHeightF		= ft 
+res@tmXBMinorOn					= False
+res@tmYLMinorOn					= False
+
+res@tiXAxisFontHeightF			= ft+0.005
+res@tiYAxisFontHeightF			= ft+0.005
+
 
 plot(0) = gsn_csm_xy(wks,CLDLIQ_all_day,CLDLIQ_all_day&lev,res)
 ;plot(0) = gsn_csm_xy(wks,CLDLIQ_dn,CLDLIQ_dn&lev,res)
