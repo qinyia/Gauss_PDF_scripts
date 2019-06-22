@@ -352,7 +352,7 @@ dash(dimsizes(vars):2*dimsizes(vars)-1) = dash2
 ;************************create plot***************
 date=systemfunc("date")
 print(date)
-wks = gsn_open_wks("pdf","figure/85W-Ttend-"+date)
+wks = gsn_open_wks("x11","figure/85W-Ttend-"+date)
 ;gsn_define_colormap(wks,"WhiteBlueGreenYellowRed")
 gsn_define_colormap(wks,"BlueRed")
 
