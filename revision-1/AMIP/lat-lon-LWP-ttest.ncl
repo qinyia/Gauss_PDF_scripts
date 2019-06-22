@@ -15,7 +15,8 @@ ss = systemfunc("rm ./tmp*")
 ncdf_mode = "create"
 
 ;***************file 1********************
-fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+;fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+fdir = "/home/lyl/WORK3/qinyi/mid-data/newcldfrac/revision-1/"
 fdir_append = ""
 
 fdir_obs = "/home/lyl/WORK1/cesm1_2_1/amwg_diag/obs_data/"
@@ -109,7 +110,9 @@ prob@long_name = "Probability:difference between means"
 prob_1 = where(prob.lt.0.05,prob,prob@_FillValue)
 
 ;************************create plot***************
-wks = gsn_open_wks("eps","../figure/fig7-lat-lon-LWP-ttest-eps")
+;wks = gsn_open_wks("eps","../figure/fig7-lat-lon-LWP-ttest-eps")
+wks = gsn_open_wks("pdf","../figure/fig7-lat-lon-LWP-ttest")
+
 ;gsn_define_colormap(wks,"WhiteBlueGreenYellowRed")
 
 plot = new(6,graphic)
@@ -136,17 +139,31 @@ res@mpCenterLonF         = 180.
 ;res@mpMinLatF            =  -40.
 ;res@mpMaxLatF            =  40.
 
-res@gsnRightString = "TGCLDLWP(g/m~S~2~N~)"
+res@gsnRightString = "TGCLDLWP (g m~S~-2~N~)"
 
-res@gsnLeftStringFontHeightF =  0.025
-res@gsnRightStringFontHeightF = 0.025
+;res@gsnLeftStringFontHeightF =  0.025
+;res@gsnRightStringFontHeightF = 0.025
 
 res@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
 res@cnMaxLevelValF       = 200        ; min level
 res@cnMinLevelValF       = 10
 res@cnLevelSpacingF      = 10
 
-res@lbLabelBarOn = False
+ft                              = 0.032
+res@gsnStringFontHeightF        = ft
+res@tmXBMinorOn                 = False
+res@tmYLMinorOn                 = False
+res@tmXTOn                      = False
+res@tmYROn                      = False
+res@tmXBTickSpacingF            = 60.
+res@tmXBLabelFontHeightF        = ft
+res@tmYLLabelFontHeightF        = ft
+
+res@pmLabelBarOrthogonalPosF    = 0.20
+res@lbLabelStride               = 4.
+
+
+;res@lbLabelBarOn = False
 res@gsnLeftString = "(a) Park_RH"
 plot(0) = gsn_csm_contour_map_ce (wks,TGCLDLWP_interp(0,:,:),res)
 res@gsnLeftString = "(b) Gauss_PDF"
@@ -163,7 +180,7 @@ res2@cnMaxLevelValF       = 100        ; min level
 res2@cnMinLevelValF       = -100
 res2@cnLevelSpacingF      = 10
 
-res2@lbLabelBarOn = False
+;res2@lbLabelBarOn = False
 res2@gsnLeftString = "(d) RH-NVAP"
 plot(3) = gsn_csm_contour_map_ce (wks,TGCLDLWPdiff(0,:,:),res2)
 res2@gsnLeftString = "(e) PDF-NVAP"
@@ -193,28 +210,35 @@ res3@gsnRightString = ""
   overlay (plot(5), plot2)
 
 ;;;; panel finally
-pres1 = True
-pres1@gsnPanelLabelBar = True
-pres1@gsnFrame = False
-pres1@gsnPanelTop = 0.9
-pres1@gsnPanelBottom = 0.6
-pres1@pmLabelBarWidthF = 0.70
-pres1@pmLabelBarHeightF = 0.07
-pres1@lbLabelStride = 2
-pres1@pmLabelBarOrthogonalPosF = -0.015
+;pres1 = True
+;pres1@gsnPanelLabelBar = True
+;pres1@gsnFrame = False
+;pres1@gsnPanelTop = 0.9
+;pres1@gsnPanelBottom = 0.6
+;pres1@pmLabelBarWidthF = 0.70
+;pres1@pmLabelBarHeightF = 0.07
+;pres1@lbLabelStride = 2
+;pres1@pmLabelBarOrthogonalPosF = -0.015
+;
+;gsn_panel(wks,plot(0:2),(/1,3/),pres1)
+;
+;pres2 = True
+;pres2@gsnPanelLabelBar = True
+;pres2@gsnPanelTop = 0.6
+;pres2@gsnPanelBottom = 0.3
+;pres2@pmLabelBarWidthF = 0.70
+;pres2@pmLabelBarHeightF = 0.07
+;pres2@lbLabelStride = 2
+;pres2@pmLabelBarOrthogonalPosF = -0.015
+;
+;gsn_panel(wks,plot(3:5),(/1,3/),pres2)
 
-gsn_panel(wks,plot(0:2),(/1,3/),pres1)
+resP                                = True
+resP@gsnPanelXWhiteSpacePercent     = 5.0
+resP@gsnPanelYWhiteSpacePercent     = 5.0
 
-pres2 = True
-pres2@gsnPanelLabelBar = True
-pres2@gsnPanelTop = 0.6
-pres2@gsnPanelBottom = 0.3
-pres2@pmLabelBarWidthF = 0.70
-pres2@pmLabelBarHeightF = 0.07
-pres2@lbLabelStride = 2
-pres2@pmLabelBarOrthogonalPosF = -0.015
+gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
 
-gsn_panel(wks,plot(3:5),(/1,3/),pres2)
 
 
 end

@@ -15,7 +15,9 @@ ss = systemfunc("rm ./tmp*")
 ncdf_mode = "create"
 
 ;***************file 1********************
-fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+;fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+fdir = "/home/lyl/WORK3/qinyi/mid-data/newcldfrac/revision-1/"
+
 fdir_append = ""
 
 fdir_obs = "/home/lyl/WORK1/cesm1_2_1/amwg_diag/obs_data/"
@@ -90,7 +92,9 @@ SWCFdiff = (/SWCF_regrid(0,:,:)-SWCF_regrid(1,:,:) /) ; 1deg-2deg
 
 
 ;************************create plot***************
-wks = gsn_open_wks("eps","../figure/fig14-lat-lon-res-dependent-cloud-swcf-eps")
+;wks = gsn_open_wks("eps","../figure/fig14-lat-lon-res-dependent-cloud-swcf-eps")
+wks = gsn_open_wks("pdf","../figure/fig14-lat-lon-res-dependent-cloud-swcf")
+
 
 plot = new(6,graphic)
 
@@ -118,13 +122,26 @@ res@mpCenterLonF         = 180.
 
 res@gsnRightString = "CLDLOW(%)"
 
-res@gsnLeftStringFontHeightF =  0.025
-res@gsnRightStringFontHeightF = 0.025
+;res@gsnLeftStringFontHeightF =  0.025
+;res@gsnRightStringFontHeightF = 0.025
 
 res@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
 res@cnMaxLevelValF       = 100.
 res@cnMinLevelValF       = 5.
 res@cnLevelSpacingF      = 5.
+
+ft                              = 0.032
+res@gsnStringFontHeightF        = ft
+res@tmXBMinorOn                 = False
+res@tmYLMinorOn                 = False
+res@tmXTOn                      = False
+res@tmYROn                      = False
+res@tmXBTickSpacingF            = 60.
+res@tmXBLabelFontHeightF        = ft
+res@tmYLLabelFontHeightF        = ft
+
+res@pmLabelBarOrthogonalPosF    = 0.20
+;res@lbLabelStride               = 2.
 
 res@gsnLeftString = "(a) PDF-2deg"
 plot(0) = gsn_csm_contour_map_ce (wks,CLDLOW_regrid(1,:,:),res)
@@ -143,7 +160,7 @@ plot(1) = gsn_csm_contour_map_ce (wks,CLDLOWdiff,res2)
 
 ;;;; SWCF
 
-res@gsnRightString = "SWCF(W/m~S~2~N~)"
+res@gsnRightString = "SWCF(W m~S~-2~N~)"
 res@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
 res@cnMaxLevelValF       = 0.
 res@cnMinLevelValF       = -160.
@@ -166,6 +183,8 @@ plot(3) = gsn_csm_contour_map_ce (wks,SWCFdiff,res2)
 
 ;;;; panel finally
 pres1 = True
+pres1@gsnPanelXWhiteSpacePercent     = 5.0
+pres1@gsnPanelYWhiteSpacePercent     = 5.0
 
 gsn_panel(wks,plot,(/2,2/),pres1)
 

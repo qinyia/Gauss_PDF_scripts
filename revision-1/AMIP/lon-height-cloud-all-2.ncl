@@ -6,7 +6,9 @@ load "./functions_lat_interpolate.ncl"
 
 begin
 
-fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+;fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+fdir = "/home/lyl/WORK3/qinyi/mid-data/newcldfrac/revision-1/"
+
 fdir_append = ""
 
 fdir_obs = "/home/lyl/WORK3/qinyi/data/calipso/temp/"
@@ -135,7 +137,9 @@ cld_new_regrid_1!2 = "lon"
 printVarSummary(cld_new_regrid_1)
 
 ;create plot
-wks = gsn_open_wks("eps","../figure/fig10-lon-height-cloud-all-revise-2-COSP-eps")
+;wks = gsn_open_wks("eps","../figure/fig10-lon-height-cloud-all-revise-2-COSP-eps")
+wks = gsn_open_wks("pdf","../figure/fig10-lon-height-cloud-all-revise-2-COSP")
+
 gsn_define_colormap(wks,"WhiteBlueGreenYellowRed")
 plot = new(9,graphic)
 
@@ -161,7 +165,7 @@ res@trYMinF = 700.
 res@trYMaxF = lev(29)
 
 res@gsnYAxisIrregular2Linear = True
-res@tiYAxisString = "Pressure(hPa)"
+res@tiYAxisString = "Pressure (hPa)"
 
 res@tmXBTickSpacingF= 10.
 
@@ -172,6 +176,20 @@ res@cnLevelSpacingF = 5.
 
 ;res@gsnRightString = "%"
 res@gsnRightString = ""
+
+ft                              = 0.032
+res@gsnStringFontHeightF        = ft+0.003
+res@tmXBMinorOn                 = False
+res@tmYLMinorOn                 = False
+res@tmXTOn                      = False
+res@tmYROn                      = False
+;res@tmXBTickSpacingF            = 60.
+res@tmXBLabelFontHeightF        = ft+0.003
+res@tmYLLabelFontHeightF        = ft+0.003
+res@tiYAxisFontHeightF			= ft+0.003
+
+;res@pmLabelBarOrthogonalPosF    = 0.20
+;res@lbLabelStride               = 4.
 
 res2 = True
 
@@ -187,22 +205,21 @@ lres@xyLineThicknessF = 4.0
 lres@gsnLeftString = ""
 lres@gsnRightString = ""
 
-res@gsnLeftStringFontHeightF = 0.03
 
 ;res@trXMinF = 240.
 ;res@trXMaxF = 280.
 
-res@gsnLeftString = "(a)RH-Off Peru"
+res@gsnLeftString = "(a) RH-Off Peru"
 plot(0) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_old_regrid_1(:,{-20:-10},{239:281}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({239:281}),dim_avg_n_Wrap(pblh_pres_old({-20:-10},{239:281}),0),lres)
 ;overlay(plot(0),plot_ov1)
 
-res@gsnLeftString = "(b)PDF-off Peru"
+res@gsnLeftString = "(b) PDF-off Peru"
 plot(1) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_new_regrid_1(:,{-20:-10},{239:281}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({239:281}),dim_avg_n_Wrap(pblh_pres_new({-20:-10},{239:281}),0),lres)
 ;overlay(plot(1),plot_ov1)
 
-res@gsnLeftString = "(c)Obs-off Peru"
+res@gsnLeftString = "(c) Obs-off Peru"
 plot(2) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_obs_regrid_1(:,{-20:-10},{239:281}),1),res)
 
 ;==========
@@ -245,6 +262,10 @@ plot(8) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_obs_regrid_1(:,{-20:-10},{329:
 resPanel                 = True                 ; panel mods desired
 resPanel@gsnPanelLabelBar= True                 ; label bar on panel
 ;resPanel@gsnMaximize     = True                 ; fill up the page
+resPanel@gsnPanelXWhiteSpacePercent     = 5.0
+resPanel@gsnPanelYWhiteSpacePercent     = 5.0
+
 gsn_panel(wks,plot,(/3,3/),resPanel)
+
 
 end

@@ -11,7 +11,9 @@ begin
 
 
 ;***************file 1********************
-fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+;fdir = "/home/lyl/WORK3/qinyi/scripts/newcldfrac/revision-1/data/output/"
+fdir = "/home/lyl/WORK3/qinyi/mid-data/newcldfrac/revision-1/"
+
 fdir_append = ""
 
 fdir_obs = "/home/lyl/WORK1/cesm1_2_1/amwg_diag/obs_data/"
@@ -115,12 +117,13 @@ prob_c@_FillValue = 9.96921e+36
 prob_c@long_name = "Probability:difference between means"
 
 ;************************create plot***************
-wks = gsn_open_wks("eps","../figure/fig12-lat-lon-precc-precl-ttest-eps")
+;wks = gsn_open_wks("eps","../figure/fig12-lat-lon-precc-precl-ttest-eps")
+wks = gsn_open_wks("pdf","../figure/fig12-lat-lon-precc-precl-ttest")
 
 plot = new(6,graphic)
 
- cmap1 = read_colormap_file("WhiteBlueGreenYellowRed")
- cmap2 = read_colormap_file("BlueRed")
+cmap1 = read_colormap_file("WhiteBlueGreenYellowRed")
+cmap2 = read_colormap_file("BlueRed")
 
   res                      = True               ; plot mods desired
 
@@ -140,7 +143,7 @@ plot = new(6,graphic)
 ;  res@mpMinLatF            =  -40.
 ;  res@mpMaxLatF            =  40.
 
-  res@gsnRightString = "PRECL (mm/day)"
+  res@gsnRightString = "PRECL (mm day~S~-1~N~)"
 
   res@gsnLeftStringFontHeightF = 0.025
   res@gsnRightStringFontHeightF = 0.025
@@ -150,7 +153,20 @@ plot = new(6,graphic)
   res@cnMaxLevelValF = 14.
   res@cnLevelSpacingF = 1.
 
-  res@lbLabelStride = 2
+;  res@lbLabelStride = 2
+
+ft                              = 0.032
+res@gsnStringFontHeightF        = ft
+res@tmXBMinorOn                 = False
+res@tmYLMinorOn                 = False
+res@tmXTOn                      = False
+res@tmYROn                      = False
+res@tmXBTickSpacingF            = 60.
+res@tmXBLabelFontHeightF        = ft
+res@tmYLLabelFontHeightF        = ft
+
+res@pmLabelBarOrthogonalPosF    = 0.20
+res@lbLabelStride               = 4.
 
 ;;;;;;;res2
   res2 = res
@@ -170,8 +186,8 @@ plot(1) = gsn_csm_contour_map_ce (wks,PRECL_new,res)
 res2@gsnLeftString = "(c) PDF-RH"
 plot(2) = gsn_csm_contour_map_ce (wks,PRECLdiff,res2)
 
-res@gsnRightString = "PRECC (mm/day)"
-res2@gsnRightString = "PRECC (mm/day)"
+res@gsnRightString = "PRECC (mm day~S~-1~N~)"
+res2@gsnRightString = "PRECC (mm day~S~-1~N~)"
 
 res@gsnLeftString = "(d) Park_RH"
 plot(3) = gsn_csm_contour_map_ce (wks,PRECC_def,res)
@@ -182,7 +198,6 @@ plot(5) = gsn_csm_contour_map_ce (wks,PRECCdiff,res2)
 
 
 
-resP = True
 ;;;; stippling
 
   res3 = True                            ; res2 probability plots
@@ -211,5 +226,9 @@ resP = True
 ;  draw(plot(5))
 ;  frame(wks)
 
+
+resP = True
+resP@gsnPanelXWhiteSpacePercent     = 5.0
+resP@gsnPanelYWhiteSpacePercent     = 5.0
 gsn_panel(wks,plot,(/2,3/),resP)
 end

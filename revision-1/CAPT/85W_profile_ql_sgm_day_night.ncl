@@ -153,7 +153,7 @@ N1_dn(3,:) = N1_night_avg
 ;************************create plot***************
 date=systemfunc("date")
 print(date)
-wks = gsn_open_wks("x11","figure/85W-profile-ql-sgm-day-night-"+date)
+wks = gsn_open_wks("pdf","../figure/85W-profile-ql-sgm-day-night-"+date)
 plot = new(4,graphic)
 
 ;colors = (/"black","blue","magenta","brown","burlywood","darkgreen","darkorange","purple"/)
@@ -168,8 +168,8 @@ res@trYMinF =700
 res@trYMaxF = lev(29)
 res@xyMarkLineModes = "Lines"
 ;res@xyMarkers = markers
-res@tiXAxisString = "temperature [K]"
-res@tiYAxisString = "pressure [hPa]"
+res@tiXAxisString = "temperature (K)"
+res@tiYAxisString = "pressure (hPa)"
 res@xyLineColors = colors 
 res@xyLineThicknessF = 2.0
 ;res@xyDashPatterns = (/0,2,0,2,0,2,0,0/)
@@ -191,7 +191,7 @@ res@tiXAxisFontHeightF      = fh
 res@tiYAxisFontHeightF      = fh
 
 
-res@tiXAxisString = "ql [g/kg]"
+res@tiXAxisString = "ql (g kg~S~-1~N~)"
 res@trXMinF = 0
 ;res@trXMaxF = 0.25
 ;res@gsnLeftString = "(e)"
