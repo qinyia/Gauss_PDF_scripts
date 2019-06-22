@@ -191,7 +191,7 @@ res@xyLineThicknessF = 3.0
 res@xyDashPatterns = dashes
 
 
-res@tiXAxisString = "ql (g/kg)"
+res@tiXAxisString = "ql (g kg~S~-1~N~)"
 res@trXMinF = 0
 res@trXMaxF = 0.25
 res@gsnLeftString = "(a)"

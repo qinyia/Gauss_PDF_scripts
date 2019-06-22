@@ -296,7 +296,9 @@ RH_all_day(6:8,:) = RH_3_avg
 
 
 ;***********************create plot***************
-wks = gsn_open_wks("eps","../figure/fig5-profile_T_Q_day_night_75W_2_95W-eps")
+;wks = gsn_open_wks("eps","../figure/fig5-profile_T_Q_day_night_75W_2_95W-eps")
+wks = gsn_open_wks("pdf","../figure/fig5-profile_T_Q_day_night_75W_2_95W")
+
 plot = new(4,graphic)
 
 ;colors = (/"black","blue","magenta","brown","burlywood","darkgreen","darkorange","purple"/)
@@ -330,6 +332,20 @@ res@trXMaxF = 20.
 res@gsnLeftString = "(a)"
 
 res@gsnLeftStringFontHeightF = 0.03
+
+ft								= 0.025
+res@gsnStringFontHeightF		= ft+0.005
+res@tmXTOn						= False
+res@tmYROn						= False
+res@tmXBLabelFontHeightF		= ft
+res@tmYLLabelFontHeightF		= ft 
+res@tmXBMinorOn					= False
+res@tmYLMinorOn					= False
+
+res@tiXAxisFontHeightF			= ft+0.005
+res@tiYAxisFontHeightF			= ft+0.005
+
+
 
 plot(0) = gsn_csm_xy(wks,T_all_day,T_all_day&lev,res)
 ;plot(0) = gsn_csm_xy(wks,T_dn,T_dn&lev,res)
@@ -379,7 +395,7 @@ end do
 ;gsn_text_ndc(wks,"75W",0.5,0.5,txres)
 
 ;========================
-res@tiXAxisString = "qv (g/kg)"
+res@tiXAxisString = "qv (g kg~S~-1~N~)"
 res@trXMinF = 0.
 res@trXMaxF = 10.
 res@gsnLeftString = "(b)"
@@ -399,8 +415,10 @@ res@trXMaxF = 100.
 res@gsnLeftString = "(c)"
 ;plot(2) = gsn_csm_xy(wks,RH_all_day,RH_all_day&lev,res)
 
+resP						= True
+resP@gsnPanelLeft			= 0.05
+resP@gsnPanelRight			= 0.95
 
-
-gsn_panel(wks,plot,(/1,2/),False)
+gsn_panel(wks,plot,(/1,2/),resP)
 
 end
