@@ -99,7 +99,7 @@ res1@tiYAxisString = "R"
 res1@xyLineColor = "red"
 res1@xyDashPattern = 0
 res1@tiYAxisFontColor = res1@xyLineColor
-res1@tiXAxisString = "deltaq(g/kg)"
+res1@tiXAxisString = "~F33~D~F~q (g kg~S~-1~N~)"
 res1@xyLineLabelConstantSpacingF = 0.
 
 res1@xyLineDashSegLenF = 0.3
@@ -112,11 +112,11 @@ res2@trYMaxF = 2.
 ;~N~ : normal
 ;~S~ : superscript
 ;~F33~s: sigma
-res2@tiYAxisString = "q~B~l~N~ /(2~F33~s)"
+res2@tiYAxisString = "q~B~l~N~/(2~F33~s)"
 res2@xyLineColor = "blue"
 res2@tiYAxisFontColor = res2@xyLineColor
 res2@xyDashPattern = 0
-res2@tiXAxisString = "deltaq(g/kg)"
+res2@tiXAxisString = "~F33~D~F~q (g kg~S~-1~N~)"
 
 res2@xyLineDashSegLenF = 0.5
 
@@ -130,6 +130,7 @@ res2@gsnStringFontHeightF	= 0.02
 res2@gsnLeftString		= "(b)"
 plot2 = gsn_csm_xy(wks,deltaq,conden0,res2)
 
-gsn_panel(wks,(/plot1,plot2/),(/2,1/),False)
+;gsn_panel(wks,(/plot1,plot2/),(/2,1/),False)
+gsn_panel(wks,(/plot1,plot2/),(/1,2/),False)
 
 end
