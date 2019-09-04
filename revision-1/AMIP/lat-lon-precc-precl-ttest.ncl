@@ -155,7 +155,7 @@ cmap2 = read_colormap_file("BlueRed")
 
 ;  res@lbLabelStride = 2
 
-ft                              = 0.032
+ft                              = 0.03
 res@gsnStringFontHeightF        = ft
 res@tmXBMinorOn                 = False
 res@tmYLMinorOn                 = False
@@ -183,7 +183,7 @@ res@gsnLeftString = "(a) Park_RH"
 plot(0) = gsn_csm_contour_map_ce (wks,PRECL_def,res)
 res@gsnLeftString = "(b)Gauss_PDF"
 plot(1) = gsn_csm_contour_map_ce (wks,PRECL_new,res)
-res2@gsnLeftString = "(c) PDF-RH"
+res2@gsnLeftString = "(c) Gauss_PDF-Park_RH"
 plot(2) = gsn_csm_contour_map_ce (wks,PRECLdiff,res2)
 
 res@gsnRightString = "PRECC (mm day~S~-1~N~)"
@@ -193,7 +193,7 @@ res@gsnLeftString = "(d) Park_RH"
 plot(3) = gsn_csm_contour_map_ce (wks,PRECC_def,res)
 res@gsnLeftString = "(e)Gauss_PDF"
 plot(4) = gsn_csm_contour_map_ce (wks,PRECC_new,res)
-res2@gsnLeftString = "(f) PDF-RH"
+res2@gsnLeftString = "(f) Gauss_PDF-Park_RH"
 plot(5) = gsn_csm_contour_map_ce (wks,PRECCdiff,res2)
 
 
@@ -230,5 +230,10 @@ plot(5) = gsn_csm_contour_map_ce (wks,PRECCdiff,res2)
 resP = True
 resP@gsnPanelXWhiteSpacePercent     = 5.0
 resP@gsnPanelYWhiteSpacePercent     = 5.0
-gsn_panel(wks,plot,(/2,3/),resP)
+
+plotall = (/plot(0),plot(3),plot(1),plot(4),plot(2),plot(5)/)
+;gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+gsn_panel(wks,plotall,(/3,2/),resP)
+
+;gsn_panel(wks,plot,(/2,3/),resP)
 end

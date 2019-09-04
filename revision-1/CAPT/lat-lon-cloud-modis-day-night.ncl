@@ -131,42 +131,49 @@ res2@cnLineColor = "black"
 
 
 ft								= 0.015
+res@gsnStringFontHeightF		= ft
 res@gsnLeftStringFontHeightF	= ft
 res@tmXTOn						= False
 res@tmYROn						= False
 res@tmXBLabelFontHeightF		= ft
 res@tmYLLabelFontHeightF		= ft 
 
-res@gsnLeftString = "(a) MODIS_day"
+res@gsnLeftString = "(a) MODIS"
+res@gsnRightString = "Day"
 plot(0) = gsn_csm_contour_map_ce(wks,cld_obs_day_avg,res)
 plot1 = gsn_csm_contour(wks,cld_obs_day_avg,res2)
 overlay(plot(0),plot1)
 
-res@gsnLeftString = "(b) MODIS_night"
+res@gsnLeftString = "(b) MODIS"
+res@gsnRightString = "Night"
 plot(1) = gsn_csm_contour_map_ce(wks,cld_obs_nig_avg,res)
 plot1 = gsn_csm_contour(wks,cld_obs_nig_avg,res2)
 overlay(plot(1),plot1)
 
 
-res@gsnLeftString = "(c) RH_day"
+res@gsnLeftString = "(c) Park_RH"
+res@gsnRightString = "Day"
 plot(2) = gsn_csm_contour_map_ce(wks,cld_old_day_avg,res)
 plot1 = gsn_csm_contour(wks,cld_old_day_avg,res2)
 overlay(plot(2),plot1)
 
 
-res@gsnLeftString = "(d) RH_night"
+res@gsnLeftString = "(d) Park_RH"
+res@gsnRightString = "Night"
 plot(3) = gsn_csm_contour_map_ce(wks,cld_old_nig_avg,res)
 plot1 = gsn_csm_contour(wks,cld_old_nig_avg,res2)
 overlay(plot(3),plot1)
 
 
-res@gsnLeftString = "(e) PDF_day"
+res@gsnLeftString = "(e) Gauss_PDF"
+res@gsnRightString = "Day"
 plot(4) = gsn_csm_contour_map_ce(wks,cld_new_day_avg,res)
 plot1 = gsn_csm_contour(wks,cld_new_day_avg,res2)
 overlay(plot(4),plot1)
 
 
-res@gsnLeftString = "(f) PDF_night"
+res@gsnLeftString = "(f) Gauss_PDF"
+res@gsnRightString = "Night"
 plot(5) = gsn_csm_contour_map_ce(wks,cld_new_nig_avg,res)
 plot1 = gsn_csm_contour(wks,cld_new_nig_avg,res2)
 overlay(plot(5),plot1)

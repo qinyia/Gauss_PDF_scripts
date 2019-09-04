@@ -171,9 +171,13 @@ plot = new(4,graphic)
 colors = (/"blue","red","black","blue","red","black","blue","red","black","blue","red","black"/)
 ; use marker to separate day and night
 markermode = (/"Lines","Lines","Lines","Lines","Lines","Lines","MarkLines","MarkLines","MarkLines","MarkLines","MarkLines","MarkLines"/)
+;markermode = (/"MarkLines","MarkLines","MarkLines","MarkLines","MarkLines","MarkLines"/)
 markers = (/16,16,16,16,16,16/)
+;markers = (/4,6,7,4,6,7,4,6,7/)
 ; use dash line to separate two cases
 dashes = (/0,0,0,1,1,1/)
+;thickes = (/1.5,3,5,1.5,3,5/)
+thickes = (/3,2,1,3,2,1/)
 
 res = True
 ;res@tiMainString = "Temperature (85W,20S)" 	;add title
@@ -183,15 +187,19 @@ res@gsnDraw = False
 res@trYMinF =700
 res@trYMaxF = lev(29)
 res@xyMarkLineModes = markermode
-res@xyMarkers = markers
+;res@xyMarkers = markers
+;res@xyMarkerSizeF	= 0.03
+;res@xyMarkerColors  = colors
 res@tiXAxisString = "temperature (K)"
 res@tiYAxisString = "pressure (hPa)"
 res@xyLineColors = colors 
-res@xyLineThicknessF = 3.0
+;res@xyLineColor	= "black"
+;res@xyMonoLineColor = True
+res@xyLineThicknesses= thickes
 res@xyDashPatterns = dashes
 
 
-res@tiXAxisString = "ql (g kg~S~-1~N~)"
+res@tiXAxisString = "q~B~l~N~ (g kg~S~-1~N~)"
 res@trXMinF = 0
 res@trXMaxF = 0.25
 res@gsnLeftString = "(a)"
@@ -218,22 +226,26 @@ plot(0) = gsn_csm_xy(wks,CLDLIQ_all_day,CLDLIQ_all_day&lev,res)
 ;========================
 ;Attach a legend
 lgres = True
+lgres@lgMonoItemType = False
+lgres@lgMonoDashIndex	= False
 lgres@lgLineColors = colors
-lgres@lgLineThicknessF = res@xyLineThicknessF
+lgres@lgMonoLineThickness = False
+lgres@lgLineThicknesses = (/3,2,1/) ;res@xyLineThicknesses
 lgres@lgDashIndexes = res@xyDashPatterns
 lgres@lgItemTypes = res@xyMarkLineModes
 lgres@lgLabelFontHeightF = .10
-lgres@vpWidthF = 0.20
+lgres@vpWidthF = 0.27
 lgres@vpHeightF = 0.22
 ;lgres@lgPerimThicknessF = 1.0
 lgres@lgPerimOn = False
 
-labels_RH = (/"RH-75W","RH-85W","RH-95W"/)
-labels_PDF = (/"PDF-75W","PDF-85W","PDF-95W"/)
+labels_RH = (/"Park_RH-75W","Park_RH-85W","Park_RH-95W"/)
+labels_PDF = (/"Gauss_PDF-75W","Gauss_PDF-85W","Gauss_PDF-95W"/)
 
 legend_RH = gsn_create_legend(wks,3,labels_RH,lgres)
 
 lgres@lgDashIndexes = (/1,1,1,1,1,1/)
+;lgres@lgLineThicknesses = (/1.5,1.5,1.5/)*2 ;res@xyLineThicknesses
 legend_PDF = gsn_create_legend(wks,3,labels_PDF,lgres)
 
 amres_RH = True
@@ -260,7 +272,7 @@ res@gsnLeftString = "(b)"
 plot(1) = gsn_csm_xy(wks,CLOUD_all_day,CLOUD_all_day&lev,res)
 
 ;========================
-res@tiXAxisString = "~F33~s~N~(10~S~-3~N~)"
+res@tiXAxisString = "~F33~s~N~ (10~S~-3~N~)"
 res@trXMinF = 0
 res@trXMaxF = 0.5
 res@gsnLeftString = "(c)"

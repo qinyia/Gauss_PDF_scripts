@@ -140,7 +140,7 @@ res@mpCenterLonF         = 180.
 ;res@mpMinLatF            =  -40.
 ;res@mpMaxLatF            =  40.
 
-res@gsnRightString = "SWCF(W m~S~-2~N~)"
+res@gsnRightString = "SWCF (W m~S~-2~N~)"
 
 ;res@gsnLeftStringFontHeightF =  0.025
 ;res@gsnRightStringFontHeightF = 0.025
@@ -150,7 +150,7 @@ res@cnMaxLevelValF       = 0.
 res@cnMinLevelValF       = -160.
 res@cnLevelSpacingF      = 15.
 
-ft                              = 0.032
+ft                              = 0.03
 res@gsnStringFontHeightF        = ft
 res@tmXBMinorOn                 = False
 res@tmYLMinorOn                 = False
@@ -168,7 +168,7 @@ res@gsnLeftString = "(a) Park_RH"
 plot(0) = gsn_csm_contour_map_ce (wks,SWCF_interp(0,:,:),res)
 res@gsnLeftString = "(b) Gauss_PDF"
 plot(1) = gsn_csm_contour_map_ce (wks,SWCF_interp(1,:,:),res)
-res@gsnLeftString = "(c) CERES-EBAF"
+res@gsnLeftString = "(c) OBS"
 plot(2) = gsn_csm_contour_map_ce (wks,SWCF_interp(2,:,:),res)
 
 res2 = res
@@ -181,11 +181,11 @@ res2@cnMinLevelValF       = -40
 res2@cnLevelSpacingF      = 5
 
 ;res2@lbLabelBarOn = False
-res2@gsnLeftString = "(d) RH-CERES-EBAF"
+res2@gsnLeftString = "(d) Park_RH-OBS"
 plot(3) = gsn_csm_contour_map_ce (wks,SWCFdiff(0,:,:),res2)
-res2@gsnLeftString = "(e) PDF-CERES-EBAF"
+res2@gsnLeftString = "(e) Gauss_PDF-OBS"
 plot(4) = gsn_csm_contour_map_ce (wks,SWCFdiff(1,:,:),res2)
-res2@gsnLeftString = "(f) PDF-RH"
+res2@gsnLeftString = "(f) Gauss_PDF-Park_RH"
 plot(5) = gsn_csm_contour_map_ce (wks,SWCFdiff(2,:,:),res2)
 
 ;;;; stippling
@@ -237,7 +237,9 @@ resP                                = True
 resP@gsnPanelXWhiteSpacePercent     = 5.0
 resP@gsnPanelYWhiteSpacePercent     = 5.0
 
-gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+plotall = (/plot(0),plot(3),plot(1),plot(4),plot(2),plot(5)/)
+;gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+gsn_panel(wks,plotall,(/3,2/),resP)
 
 
 

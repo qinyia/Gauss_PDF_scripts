@@ -329,9 +329,9 @@ dash  = new((/2*dimsizes(vars)/),string)
 
 
 do ivar = 0,dimsizes(vars)-1
-label1(ivar) = (/vars(ivar)+"-RH"/)
-label2(ivar) = (/vars(ivar)+"-PDF"/)
-label3(ivar) = (/vars(ivar)+"-Diff"/)
+label1(ivar) = (/vars(ivar)+"-Park_RH"/)
+label2(ivar) = (/vars(ivar)+"-Gauss_PDF"/)
+label3(ivar) = (/vars(ivar)+"-DIFF"/)
 
 color1(ivar) = (/color_raw(ivar)/)
 color2(ivar) = (/color_raw(ivar)/)
@@ -403,11 +403,11 @@ res@tiYAxisFontHeightF			= ft+0.005
 res@gsnLeftString = "(a)"
 
 if(vars(0).eq."CMFDT")then
-res@tiXAxisString = "T Tendency (K/day)"
+res@tiXAxisString = "T Tendency (K day~S~-1~N~)"
 end if
 
 if(vars(0).eq."CMFDLIQ")then
-res@tiXAxisString = "Liquid Water Tendency (g/kg/day)"
+res@tiXAxisString = "Liquid Water Tendency (g kg~S~-1~N~ day~S~-1~N~)"
 end if
 
 ;res@tiMainString = "20S,"+(360-lon({275}))+"W"

@@ -35,8 +35,8 @@ f2 = addfile(fdir+fname2+"/"+fname2+append,"r")
 CLDLOW_1deg = f1->CLDLOW(0,:,:)
 CLDLOW_2deg = f2->CLDLOW(0,:,:)
 
-CLDLOW_1deg = CLDLOW_1deg*100.
-CLDLOW_2deg = CLDLOW_2deg*100.
+;CLDLOW_1deg = CLDLOW_1deg*100.
+;CLDLOW_2deg = CLDLOW_2deg*100.
 
 SWCF_1deg = f1->SWCF(0,:,:)
 SWCF_2deg = f2->SWCF(0,:,:)
@@ -120,17 +120,17 @@ res@mpLandFillColor      = "gray"            ; set land to be gray
 
 res@mpCenterLonF         = 180.
 
-res@gsnRightString = "CLDLOW(%)"
+res@gsnRightString = "CLDLOW (fraction)"
 
 ;res@gsnLeftStringFontHeightF =  0.025
 ;res@gsnRightStringFontHeightF = 0.025
 
 res@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
-res@cnMaxLevelValF       = 100.
-res@cnMinLevelValF       = 5.
-res@cnLevelSpacingF      = 5.
+res@cnMaxLevelValF       = 100./100.
+res@cnMinLevelValF       = 5./100.
+res@cnLevelSpacingF      = 5./100.
 
-ft                              = 0.032
+ft                              = 0.028
 res@gsnStringFontHeightF        = ft
 res@tmXBMinorOn                 = False
 res@tmYLMinorOn                 = False
@@ -141,7 +141,7 @@ res@tmXBLabelFontHeightF        = ft
 res@tmYLLabelFontHeightF        = ft
 
 res@pmLabelBarOrthogonalPosF    = 0.20
-;res@lbLabelStride               = 2.
+res@lbLabelStride               = 4.
 
 res@gsnLeftString = "(a) PDF-2deg"
 plot(0) = gsn_csm_contour_map_ce (wks,CLDLOW_regrid(1,:,:),res)
@@ -151,16 +151,16 @@ delete(res2@cnFillPalette)
 res2@cnFillPalette = cmap2(:,:)
 
 res2@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
-res2@cnMaxLevelValF       = 20.
-res2@cnMinLevelValF       = -20.
-res2@cnLevelSpacingF      = 2.
+res2@cnMaxLevelValF       = 20./100.
+res2@cnMinLevelValF       = -20./100.
+res2@cnLevelSpacingF      = 2./100.
 
 res2@gsnLeftString = "(b) 1deg-2deg"
 plot(1) = gsn_csm_contour_map_ce (wks,CLDLOWdiff,res2)
 
 ;;;; SWCF
 
-res@gsnRightString = "SWCF(W m~S~-2~N~)"
+res@gsnRightString = "SWCF (W m~S~-2~N~)"
 res@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
 res@cnMaxLevelValF       = 0.
 res@cnMinLevelValF       = -160.

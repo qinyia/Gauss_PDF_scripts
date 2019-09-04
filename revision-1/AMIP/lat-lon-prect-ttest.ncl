@@ -155,7 +155,7 @@ plot = new(6,graphic)
   res@cnMaxLevelValF = 17.
   res@cnLevelSpacingF = 1.
 
-ft                              = 0.032
+ft                              = 0.028
 res@gsnStringFontHeightF        = ft
 res@tmXBMinorOn                 = False
 res@tmYLMinorOn                 = False
@@ -166,7 +166,7 @@ res@tmXBLabelFontHeightF        = ft
 res@tmYLLabelFontHeightF        = ft
 
 res@pmLabelBarOrthogonalPosF    = 0.20
-res@lbLabelStride               = 4.
+res@lbLabelStride               = 2.
 
 ;res@lbLabelBarOn = False
 res@gsnLeftString = "(a) Park_RH"
@@ -187,11 +187,11 @@ res2@cnMaxLevelValF = 6.
 res2@cnLevelSpacingF = 0.5
 
 ;res2@lbLabelBarOn = False
-res2@gsnLeftString = "(d) RH-GPCP"
+res2@gsnLeftString = "(d) Park_RH-GPCP"
 plot(3) = gsn_csm_contour_map_ce (wks,PRECTdiff(0,:,:),res2)
-res2@gsnLeftString = "(e) PDF-GPCP"
+res2@gsnLeftString = "(e) Gauss_PDF-GPCP"
 plot(4) = gsn_csm_contour_map_ce (wks,PRECTdiff(1,:,:),res2)
-res2@gsnLeftString = "(f) PDF-RH"
+res2@gsnLeftString = "(f) Gauss_PDF-Park_RH"
 plot(5) = gsn_csm_contour_map_ce (wks,PRECTdiff(2,:,:),res2)
 
 ;;;; stippling
@@ -244,7 +244,9 @@ resP                                = True
 resP@gsnPanelXWhiteSpacePercent     = 5.0
 resP@gsnPanelYWhiteSpacePercent     = 5.0
 
-gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+plotall = (/plot(0),plot(3),plot(1),plot(4),plot(2),plot(5)/)
+;gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+gsn_panel(wks,plotall,(/3,2/),resP)
 
 end 
 

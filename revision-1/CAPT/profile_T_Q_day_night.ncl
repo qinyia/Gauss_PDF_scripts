@@ -282,6 +282,9 @@ T_all_day(0:2,:) = T_1_avg
 T_all_day(3:5,:) = T_2_avg
 T_all_day(6:8,:) = T_3_avg
 
+; change unit from degreeC to K
+T_all_day = T_all_day + 273.15
+
 Q_all_day = new((/9,dimsizes(lev)/),float)
 Q_all_day(0:2,:) = Q_1_avg
 Q_all_day(3:5,:) = Q_2_avg
@@ -310,6 +313,8 @@ markermode = (/"Lines","Lines","Lines","Lines","Lines","Lines","Lines","Lines","
 ; use dash line to separate two cases and observation:
 dashes = (/1,1,1,2,2,2,0,0,0/)
 
+thickes = (/1.5,2,3,1.5,2,3,1.5,2,3/)
+
 res = True
 ;res@tiMainString = "Temperature (85W,20S)" 	;add title
 res@trYReverse = True 				;reverse Y-axis
@@ -319,16 +324,19 @@ res@trYMinF =700
 res@trYMaxF = lev(29)
 res@xyMarkLineModes = markermode
 ;res@xyMarkers = markers
-res@tiXAxisString = "temperature (K)"
+;res@tiXAxisString = "temperature (K)"
 res@tiYAxisString = "pressure (hPa)"
 res@xyLineColors = colors 
-res@xyLineThicknessF = 3.0
+;res@xyLineThicknessF = 3.0
+res@xyMonoLineThickness = False
+res@xyLineThicknesses	= thickes 
 res@xyDashPatterns = dashes
 
 
-res@tiXAxisString = "T(~F34~0~F~C)"
-res@trXMinF = 0.
-res@trXMaxF = 20.
+;res@tiXAxisString = "T(~F34~0~F~C)"
+res@tiXAxisString = "T (K)"
+res@trXMinF = 273.
+res@trXMaxF = 293.
 res@gsnLeftString = "(a)"
 
 res@gsnLeftStringFontHeightF = 0.03
@@ -356,14 +364,16 @@ plot(0) = gsn_csm_xy(wks,T_all_day,T_all_day&lev,res)
 lgres = True
 ;lgres@lgLineColors = colors
 lgres@lgLineColors = (/"black","black","black"/)
-lgres@lgLineThicknessF = res@xyLineThicknessF
+lgres@lgMonoLineThickness = False
+lgres@lgLineThicknesses = res@xyLineThicknesses
+;lgres@lgLineThicknessF = res@xyLineThicknessF
 lgres@lgItemTypes = res@xyMarkLineModes
 lgres@lgLabelFontHeightF = .060
-lgres@vpWidthF = 0.20
+lgres@vpWidthF = 0.30
 lgres@vpHeightF = 0.22
 lgres@lgPerimOn = False
 
-labels_case = (/"RH","PDF","OBS"/)
+labels_case = (/"Park_RH","Gauss_PDF","OBS"/)
 labels_station = (/"75W","85W","95W"/)
 
 lgres@lgDashIndexes = (/1,2,0/)
@@ -375,7 +385,7 @@ txres@txFontHeightF = 0.025
 txres@txJust = "TopRight"
 
 ypos = 750.
-xpos = 4.
+xpos = 277.
 strs = (/"75W",\
          "85W",\
 	 "95W"/)
@@ -395,7 +405,7 @@ end do
 ;gsn_text_ndc(wks,"75W",0.5,0.5,txres)
 
 ;========================
-res@tiXAxisString = "qv (g kg~S~-1~N~)"
+res@tiXAxisString = "q~B~v~N~ (g kg~S~-1~N~)"
 res@trXMinF = 0.
 res@trXMaxF = 10.
 res@gsnLeftString = "(b)"

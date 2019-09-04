@@ -51,9 +51,9 @@ printMinMax(cld_old,False)
 printMinMax(cld_new,False)
 printMinMax(cld_obs,False)
 
-;cld_old = cld_old*100.
-;cld_new = cld_new*100.
-cld_obs = cld_obs*100.
+cld_old = cld_old/100.
+cld_new = cld_new/100.
+;cld_obs = cld_obs*100.
 
 pblh_old = f1->PBLH(0,:,:)
 pblh_new = f2->PBLH(0,:,:)
@@ -170,9 +170,9 @@ res@tiYAxisString = "Pressure (hPa)"
 res@tmXBTickSpacingF= 10.
 
 res@cnLevelSelectionMode = "ManualLevels"
-res@cnMinLevelValF = 5. 
-res@cnMaxLevelValF = 70.
-res@cnLevelSpacingF = 5.
+res@cnMinLevelValF = 5./100.
+res@cnMaxLevelValF = 70./100.
+res@cnLevelSpacingF = 5./100.
 
 ;res@gsnRightString = "%"
 res@gsnRightString = ""
@@ -209,12 +209,12 @@ lres@gsnRightString = ""
 ;res@trXMinF = 240.
 ;res@trXMaxF = 280.
 
-res@gsnLeftString = "(a) RH-Off Peru"
+res@gsnLeftString = "(a) Park_RH-Off Peru"
 plot(0) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_old_regrid_1(:,{-20:-10},{239:281}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({239:281}),dim_avg_n_Wrap(pblh_pres_old({-20:-10},{239:281}),0),lres)
 ;overlay(plot(0),plot_ov1)
 
-res@gsnLeftString = "(b) PDF-off Peru"
+res@gsnLeftString = "(b) Gauss_PDF-off Peru"
 plot(1) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_new_regrid_1(:,{-20:-10},{239:281}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({239:281}),dim_avg_n_Wrap(pblh_pres_new({-20:-10},{239:281}),0),lres)
 ;overlay(plot(1),plot_ov1)
@@ -226,12 +226,12 @@ plot(2) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_obs_regrid_1(:,{-20:-10},{239:
 ;res@trXMinF = 200.
 ;res@trXMaxF = 240.
 
-res@gsnLeftString = "(d) RH-off California"
+res@gsnLeftString = "(d) Park_RH-off California"
 plot(3) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_old_regrid_1(:,{20:30},{199:241}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({199:241}),dim_avg_n_Wrap(pblh_pres_old({20:30},{199:241}),0),lres)
 ;overlay(plot(3),plot_ov1)
 
-res@gsnLeftString = "(e) PDF-off California"
+res@gsnLeftString = "(e) Gauss_PDF-off California"
 plot(4) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_new_regrid_1(:,{20:30},{199:241}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({199:241}),dim_avg_n_Wrap(pblh_pres_new({20:30},{199:241}),0),lres)
 ;overlay(plot(4),plot_ov1)
@@ -244,12 +244,12 @@ plot(5) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_obs_regrid_1(:,{20:30},{199:24
 ;res@trXMaxF = 358.
 
 
-res@gsnLeftString = "(g) RH-off Namibia"
+res@gsnLeftString = "(g) Park_RH-off Namibia"
 plot(6) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_old_regrid_1(:,{-20:-10},{329:360}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({329:360}),dim_avg_n_Wrap(pblh_pres_old({-20:-10},{329:360}),0),lres)
 ;overlay(plot(6),plot_ov1)
 
-res@gsnLeftString = "(h) PDF-off Namibia"
+res@gsnLeftString = "(h) Gauss_PDF-off Namibia"
 plot(7) = gsn_csm_contour(wks, dim_avg_n_Wrap(cld_new_regrid_1(:,{-20:-10},{329:360}),1),res)
 ;plot_ov1 = gsn_csm_xy(wks,lon1({329:360}),dim_avg_n_Wrap(pblh_pres_new({-20:-10},{329:360}),0),lres)
 ;overlay(plot(7),plot_ov1)

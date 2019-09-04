@@ -157,7 +157,10 @@ wks = gsn_open_wks("pdf","../figure/85W-profile-ql-sgm-day-night-"+date)
 plot = new(4,graphic)
 
 ;colors = (/"black","blue","magenta","brown","burlywood","darkgreen","darkorange","purple"/)
-colors = (/"blue","blue","red","red","black","black","darkorange","purple"/)
+;colors = (/"blue","blue","red","red","black","black","darkorange","purple"/)
+colors = (/"red","red","blue","blue"/)
+
+thickes = (/1.5,1.5,3,3/)
 
 res = True
 ;res@tiMainString = "Temperature (85W,20S)" 	;add title
@@ -171,7 +174,8 @@ res@xyMarkLineModes = "Lines"
 res@tiXAxisString = "temperature (K)"
 res@tiYAxisString = "pressure (hPa)"
 res@xyLineColors = colors 
-res@xyLineThicknessF = 2.0
+;res@xyLineThicknessF = 2.0
+res@xyLineThicknesses = thickes
 ;res@xyDashPatterns = (/0,2,0,2,0,2,0,0/)
 ;res@xyDashPatterns = (/0,16,0,16,0,16,0,16/)
 res@xyDashPatterns = (/0,14,0,14,0,14,0,14/)
@@ -191,7 +195,7 @@ res@tiXAxisFontHeightF      = fh
 res@tiYAxisFontHeightF      = fh
 
 
-res@tiXAxisString = "ql (g kg~S~-1~N~)"
+res@tiXAxisString = "q~B~l~N~ (g kg~S~-1~N~)"
 res@trXMinF = 0
 ;res@trXMaxF = 0.25
 ;res@gsnLeftString = "(e)"
@@ -205,18 +209,19 @@ plot(0) = gsn_csm_xy(wks,CLDLIQ_dn,CLDLIQ_dn&lev,res)
 ;Attach a legend
 lgres = True
 lgres@lgLineColors = colors
-lgres@lgLineThicknesses = res@xyLineThicknessF
+lgres@lgMonoLineThickness = False
+lgres@lgLineThicknesses = res@xyLineThicknesses
 lgres@lgDashIndexes = res@xyDashPatterns
 lgres@lgItemTypes = res@xyMarkLineModes
 lgres@lgLabelFontHeightF = .08 
-lgres@vpWidthF = 0.18 
+lgres@vpWidthF = 0.30
 lgres@vpHeightF = 0.22
 ;lgres@lgPerimThicknessF = 1.0
 lgres@lgPerimOn = False
 
 
 ;labels = (/"Old-day","Old-night","New-day","New-night"/)
-labels = (/"RH-day","RH-night","PDF-day","PDF-night"/)
+labels = (/"Park_RH-day","Park_RH-night","Gauss_PDF-day","Gauss_PDF-night"/)
 
 legend = gsn_create_legend(wks,4,labels,lgres)
 
@@ -236,7 +241,8 @@ res@gsnLeftString = "(b)"
 plot(1) = gsn_csm_xy(wks,CLOUD_dn,CLOUD_dn&lev,res)
 
 ;========================
-res@tiXAxisString = "sub-grid stdv.(10~S~-3~N~)"
+;res@tiXAxisString = "sub-grid stdv.(10~S~-3~N~)"
+res@tiXAxisString = "~F33~s~N~ (10~S~-3~N~)"
 res@trXMinF = 0
 ;res@trXMaxF = 0.5
 ;res@gsnLeftString = "(g)"

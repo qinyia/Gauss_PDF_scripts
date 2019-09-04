@@ -139,7 +139,7 @@ res@mpCenterLonF         = 180.
 ;res@mpMinLatF            =  -40.
 ;res@mpMaxLatF            =  40.
 
-res@gsnRightString = "TGCLDLWP (g m~S~-2~N~)"
+res@gsnRightString = "LWP (g m~S~-2~N~)"
 
 ;res@gsnLeftStringFontHeightF =  0.025
 ;res@gsnRightStringFontHeightF = 0.025
@@ -149,7 +149,7 @@ res@cnMaxLevelValF       = 200        ; min level
 res@cnMinLevelValF       = 10
 res@cnLevelSpacingF      = 10
 
-ft                              = 0.032
+ft                              = 0.03
 res@gsnStringFontHeightF        = ft
 res@tmXBMinorOn                 = False
 res@tmYLMinorOn                 = False
@@ -181,11 +181,11 @@ res2@cnMinLevelValF       = -100
 res2@cnLevelSpacingF      = 10
 
 ;res2@lbLabelBarOn = False
-res2@gsnLeftString = "(d) RH-NVAP"
+res2@gsnLeftString = "(d) Park_RH-NVAP"
 plot(3) = gsn_csm_contour_map_ce (wks,TGCLDLWPdiff(0,:,:),res2)
-res2@gsnLeftString = "(e) PDF-NVAP"
+res2@gsnLeftString = "(e) Gauss_PDF-NVAP"
 plot(4) = gsn_csm_contour_map_ce (wks,TGCLDLWPdiff(1,:,:),res2)
-res2@gsnLeftString = "(f) PDF-RH"
+res2@gsnLeftString = "(f) Gauss_PDF-Park_RH"
 plot(5) = gsn_csm_contour_map_ce (wks,TGCLDLWPdiff(2,:,:),res2)
 
 ;;;; stippling
@@ -237,7 +237,10 @@ resP                                = True
 resP@gsnPanelXWhiteSpacePercent     = 5.0
 resP@gsnPanelYWhiteSpacePercent     = 5.0
 
-gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+
+plotall = (/plot(0),plot(3),plot(1),plot(4),plot(2),plot(5)/)
+;gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+gsn_panel(wks,plotall,(/3,2/),resP)
 
 
 

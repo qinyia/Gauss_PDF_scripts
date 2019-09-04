@@ -39,8 +39,9 @@ CLDLOW_def = f1->CLDLOW(0,:,:)
 CLDLOW_new = f2->CLDLOW(0,:,:)
 CLDLOW_obs = f3->CLDLOW(0,{-90:90},:)
 
-CLDLOW_def = CLDLOW_def*100.
-CLDLOW_new = CLDLOW_new*100.
+;CLDLOW_def = CLDLOW_def*100.
+;CLDLOW_new = CLDLOW_new*100.
+CLDLOW_obs = CLDLOW_obs/100.
 
 
 lat1 = f1->lat
@@ -141,14 +142,14 @@ res@mpCenterLonF         = 180.
 ;res@mpMinLatF            =  -40.
 ;res@mpMaxLatF            =  40.
 
-res@gsnRightString = "CLDLOW (%)"
+res@gsnRightString = "CLDLOW (fraction)"
 
 res@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
-res@cnMaxLevelValF       = 98        ; min level
-res@cnMinLevelValF       = 2
-res@cnLevelSpacingF      = 4
+res@cnMaxLevelValF       = 100/100.      ; min level
+res@cnMinLevelValF       = 0/100.
+res@cnLevelSpacingF      = 5/100.
 
-ft								= 0.032
+ft								= 0.028
 res@gsnStringFontHeightF		= ft
 res@tmXBMinorOn					= False
 res@tmYLMinorOn					= False
@@ -174,16 +175,16 @@ plot(2) = gsn_csm_contour_map_ce (wks,CLDLOW_interp(2,:,:),res)
   res2@cnFillPalette = cmap2(:,:)
 
 res2@cnLevelSelectionMode = "ManualLevels" ; manually set contour levels
-res2@cnMaxLevelValF       = 40       ; min level
-res2@cnMinLevelValF       = -40
-res2@cnLevelSpacingF      = 5
+res2@cnMaxLevelValF       = 40/100.      ; min level
+res2@cnMinLevelValF       = -40/100.
+res2@cnLevelSpacingF      = 5/100.
 
 ;res2@lbLabelBarOn = False
-res2@gsnLeftString = "(d) RH-ISCCP"
+res2@gsnLeftString = "(d) Park_RH-ISCCP"
 plot(3) = gsn_csm_contour_map_ce (wks,CLDLOWdiff(0,:,:),res2)
-res2@gsnLeftString = "(e) PDF-ISCCP"
+res2@gsnLeftString = "(e) Gauss_PDF-ISCCP"
 plot(4) = gsn_csm_contour_map_ce (wks,CLDLOWdiff(1,:,:),res2)
-res2@gsnLeftString = "(f) PDF-RH"
+res2@gsnLeftString = "(f) Gauss_PDF-Park_RH"
 plot(5) = gsn_csm_contour_map_ce (wks,CLDLOWdiff(2,:,:),res2)
 
 ;;;; stippling
@@ -239,6 +240,9 @@ resP								= True
 resP@gsnPanelXWhiteSpacePercent		= 5.0
 resP@gsnPanelYWhiteSpacePercent		= 5.0
 
-gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+plotall = (/plot(0),plot(3),plot(1),plot(4),plot(2),plot(5)/)
+;gsn_panel(wks,ndtooned((/plot(0:2),plot(3:5)/)),(/2,3/),resP)
+gsn_panel(wks,plotall,(/3,2/),resP)
+
 
 end

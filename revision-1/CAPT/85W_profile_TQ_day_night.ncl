@@ -258,7 +258,7 @@ wks = gsn_open_wks("pdf","../figure/85W-profile-TQ-day-night-"+date)
 plot = new(3,graphic)
 
 ;colors = (/"black","blue","magenta","brown","burlywood","darkgreen","darkorange","purple"/)
-colors = (/"blue","blue","red","red","black","black","darkorange","purple"/)
+colors = (/"red","red","blue","blue","black","black","darkorange","purple"/)
 
 res = True
 ;res@tiMainString = "Temperature (85W,20S)" 	;add title
@@ -320,15 +320,17 @@ lgres@lgLineColors = colors
 lgres@lgLineThicknessF = res@xyLineThicknessF
 lgres@lgDashIndexes = res@xyDashPatterns
 lgres@lgItemTypes = res@xyMarkLineModes
-lgres@lgLabelFontHeightF = .20
-lgres@vpWidthF = 0.24
+lgres@lgLabelFontHeightF = .18
+lgres@vpWidthF = 0.30
 lgres@vpHeightF = 0.32
 ;lgres@lgPerimThicknessF = 1.0
 lgres@lgPerimOn = False
 
 
 ;labels = (/"22:30","01:30","04:30","07:30","10:30","13:30","16:30","19:30"/)
-labels = (/"RH-day","RH-night","PDF-day","PDF-night","Obs-day","Obs-night"/)
+;labels = (/"RH-day","RH-night","PDF-day","PDF-night","Obs-day","Obs-night"/)
+labels = (/"Park_RH-day","Park_RH-night","Gauss_PDF-day","Gauss_PDF-night","Obs-day","Obs-night"/)
+
 
 legend = gsn_create_legend(wks,6,labels,lgres)
 
@@ -341,7 +343,7 @@ legend = gsn_create_legend(wks,6,labels,lgres)
 ;========================
 
 ;res@tiMainString = "Specific Humidity (85W,20S)" 	;add title
-res@tiXAxisString = "qv (g kg~S~-1~N~)"
+res@tiXAxisString = "q~B~v~N~ (g kg~S~-1~N~)"
 res@trXMinF = 0.
 res@trXMaxF = 12.
 res@gsnLeftString = "(e)"
